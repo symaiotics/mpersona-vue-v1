@@ -8,9 +8,10 @@ mPersona is built in 2 parts, a Vue.js web interface (this package) and a Node.j
 
 ## Configuration
 The application also requires environment variables to operate when run locally.
-- VITE_API_URL=http://localhost:3000
-- VITE_WEBSOCKET_URL=ws://localhost:3000
-- VITE_STORAGE_URL=https://[AzureStorageAccount].blob.core.windows.net
+- SELF=http://localhost:5173 (or whatever URL it is hosted on)
+- API_URL=http://localhost:3000
+- WEBSOCKET_URL=ws://localhost:3000
+- STORAGE_URL=https://[AzureStorageAccount].blob.core.windows.net
 When building the Vue project for deployment, replace these variables with real values for your API/Websocket endpoint(s) and your own Azure Storage Account.
 GitHub Actions make this easy to implement.
 
