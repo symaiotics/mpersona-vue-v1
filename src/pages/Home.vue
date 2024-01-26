@@ -31,23 +31,23 @@
             mPersona is Open Source under the MIT License, inviting contributors and developers to participate in its
             evolution. Access the code and contribute to the project on GitHub
           </p>
-          <div class="space-x-2">
+          <div class="flex flex-col ">
             <a href="https://github.com/symaiotics/mpersona-vue-v1"
               class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow hover:shadow-md transition-all duration-300 ease-linear">
               <!-- <BaseIcon :path="mdiGithub" size="16" /> -->
-              mPersona Web UI (Vue.js)
+              mPersona Web UI (Vue.js) - Version 1
             </a>
             <a href="https://github.com/symaiotics/mpersona-node-v1"
               class="mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow hover:shadow-md transition-all duration-300 ease-linear">
               <!-- <BaseIcon :path="mdiGithub" size="16" /> -->
-              mPersona Server (Node.js)
+              mPersona Server (Node.js) - Version 1
             </a>
           </div>
-
-
-
         </div>
       </section>
+
+
+
 
       <Personas />
 
@@ -161,12 +161,17 @@ publishable-key="pk_live_51HfwM7EUAK7okpK9hpYgjmGqZngHYQoZ4I5cS3Pwe6rCx9NenaNGmV
 
     </main>
 
-    <Footer />
+    <Footer>
+      <p class="text-gray-600 dark:text-gray-400 text-sm mr-4">App Version: {{ env.APP_VERSION }}</p>
+      <p class="text-gray-600 dark:text-gray-400 text-sm mr-4">API Version: {{ nodeVersion }}</p>
+
+    </Footer>
 
   </div>
 </template>
 
 <script setup>
+import env from "@/env.js"
 
 import { ref, onMounted } from 'vue';
 import defaultImage from "../images/persona1.png";
@@ -187,9 +192,11 @@ import { notify } from "notiwind"
 
 
 //composables
+import { useStats } from '@/composables/useStats.js'
 import { useAccounts } from '@/composables/useAccounts.js'
 import { usePersonas } from '@/composables/usePersonas.js'
 import { useCategories } from '@/composables/useCategories.js'
+const { getStats, nodeVersion } = useStats()
 const { personas, usedCategories, skills, getPersonas, getSkills, getUsedCategories } = usePersonas()
 const { categories, getCategories } = useCategories()
 const { mailingList } = useAccounts()
@@ -198,6 +205,7 @@ let emailAddress = ref('')
 
 onMounted(() => {
 
+  getStats();
   //Personas
   getPersonas();
 

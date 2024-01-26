@@ -174,7 +174,9 @@
 
           <!-- Copyrights note -->
           <div class="text-gray-600 dark:text-gray-400 text-sm mr-4">&copy; Symaiotics Corporation</div>
-
+          <slot>
+            
+          </slot>
         </div>
 
       </div>
