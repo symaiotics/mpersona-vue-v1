@@ -8,15 +8,11 @@
     <main class="grow">
 
       <!-- Page illustration -->
-      <div class="relative max-w-6xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-        <PageIllustration />
-      </div>
-
+      
       <!-- Page sections -->
       <Cosmic>
         <HeroHome />
       </Cosmic>
-      <Carousel />
       <Stats />
 
       <section class="container mx-auto p-8 flex" data-aos="fade-up" data-aos-delay="100">
@@ -180,10 +176,8 @@ import venom from "../images/venom.webp";
 import book from "../images/book.png";
 
 import Header from '@/partials/Header.vue'
-import PageIllustration from '@/partials/PageIllustration.vue'
 import HeroHome from '@/partials/HeroHome.vue'
 import Stats from '@/partials/Stats.vue'
-import Carousel from '@/partials/Carousel.vue'
 import Personas from '@/partials/Personas.vue'
 import Footer from '@/partials/Footer.vue'
 

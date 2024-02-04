@@ -8,9 +8,7 @@
     <main class="grow">
 
       <!-- Page illustration -->
-      <div class="relative max-w-9xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-        <PageIllustration />
-      </div>
+      
       <!-- stages -->
       <!-- {{ stages }} -->
       <section class="relative">
@@ -143,7 +141,6 @@ import VueMultiselect from 'vue-multiselect'
 
 //Components
 import Header from '@/partials/Header.vue'
-import PageIllustration from '@/partials/PageIllustration.vue'
 import SocketStage from '@/components/SocketStage.vue'
 import Tabs from '@/components/Tabs.vue';
 import StageVisualize2 from '@/components/StageVisualize2.vue';

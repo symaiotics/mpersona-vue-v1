@@ -8,9 +8,7 @@
     <main class="grow">
 
       <!-- Page illustration -->
-      <div class="relative max-w-9xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-        <PageIllustration />
-      </div>
+      
 
 
 
@@ -187,7 +185,6 @@ import DragAndDropFiles from '@/components/DragAndDropFiles.vue';
 import FloatingHighlightBar from '@/components/FloatingHighlightBar.vue';
 import StickyBox from '@/components/StickyBox.vue';
 import Header from '@/partials/Header.vue'
-import PageIllustration from '@/partials/PageIllustration.vue'
 import Footer from '@/partials/Footer.vue'
 import Tabs from '@/components/Tabs.vue';
 import FileViewer from '@/components/FileViewer.vue';

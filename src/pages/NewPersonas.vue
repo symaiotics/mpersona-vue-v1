@@ -8,9 +8,7 @@
     <main class="grow">
 
       <!-- Page illustration -->
-      <div class="relative max-w-9xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-        <PageIllustration />
-      </div>
+      
       <section class="relative">
         <div class="max-w-9xl mx-auto px-4 sm:px-6 relative">
           <div class="pt-32 pb-12 md:pt-40 md:pb-20">
@@ -118,7 +116,6 @@ import { ref, onMounted, nextTick } from 'vue';
 
 //Components
 import Header from '@/partials/Header.vue'
-import PageIllustration from '@/partials/PageIllustration.vue'
 import Footer from '@/partials/Footer.vue'
 import Tabs from '@/components/Tabs.vue';
 import PersonaTable from '@/components/PersonaTable.vue';

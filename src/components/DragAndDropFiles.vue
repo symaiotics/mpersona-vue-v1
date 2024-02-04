@@ -2,7 +2,8 @@
     <div @click="openFileDialog" @dragover.prevent="dragOverHandler" @dragleave="dragLeaveHandler"
         @drop.prevent="dropHandler"
         :class="isDraggingOver ? 'bg-gray-300 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
-        class="border p-6 rounded-md transition-colors duration-300  dark:hover:bg-slate-700 hover:bg-gray-200 ">
+        class="border p-6 rounded-md transition-colors duration-300  dark:hover:bg-slate-700 hover:bg-gray-200 "   data-aos="fade-down"
+                  data-aos-delay="300">
         <input type="file" ref="fileInput" @change="handleFiles" multiple hidden>
         <p v-if="!newKnowledgeProfile?.files?.length" class="text-center text-gray-500 dark:text-gray-200 ">
             Drag and drop or click to select your .html, .json, .txt, .docx, or .pdf files here.

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import Header from './../partials/Header.vue'
+import Header from '@/partials/Header.vue'
 import HeroAbout from './../partials/HeroAbout.vue'
 import FeaturesGallery from './../partials/FeaturesGallery.vue'
 import Timeline from './../partials/Timeline.vue'
@@ -33,7 +33,7 @@ import Career from './../partials/Career.vue'
 import FeaturesAnimation from './../partials/FeaturesAnimation.vue'
 import Team from './../partials/Team.vue'
 import CtaContact from './../partials/CtaContact.vue'
-import Footer from './../partials/Footer.vue'
+import Footer from '@/partials/Footer.vue'
 
 export default {
   name: 'About',

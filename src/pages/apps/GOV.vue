@@ -81,7 +81,6 @@
 
           <section class="mb-6 w-2/3">
 
-            <!-- <HeroChat /> -->
             <Socket alignment="center" :sessionId="sessionId" :persona="selectedPersona" :userPrompt="chatPrompt"
               :messageHistory="messageHistory" :trigger="triggerGenerate" @messageComplete="messageComplete">
             </Socket>
@@ -124,13 +123,7 @@ import { ref, onMounted, nextTick, watch } from 'vue';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import Header from '@/partials/Header.vue'
-import PageIllustration from '@/partials/PageIllustration.vue'
-import HeroChat from '@/partials/HeroChat.vue'
-import HelpList from '@/partials/HelpList.vue'
 import ChatList from '@/partials/ChatList.vue'
-import RelatedLinks from '@/partials/RelatedLinks.vue'
-import Footer from '@/partials/Footer.vue'
 import canada from "@/images/canada.svg";
 
 import DisplayPersona from '@/components/DisplayPersona.vue'

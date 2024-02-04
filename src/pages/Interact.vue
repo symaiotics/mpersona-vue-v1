@@ -10,9 +10,7 @@
 
 
       <!-- Page illustration -->
-      <div class="relative max-w-9xl mx-auto h-0 pointer-events-none -z-1" aria-hidden="true">
-        <PageIllustration />
-      </div>
+      
 
       <section class="relative">
 
@@ -163,9 +161,8 @@ import { ref, computed, onMounted } from 'vue';
 
 
 
-import Header from './../partials/Header.vue'
-import PageIllustration from './../partials/PageIllustration.vue'
-import Footer from './../partials/Footer.vue'
+import Header from '@/partials/Header.vue'
+import Footer from '@/partials/Footer.vue'
 import Personas from '@/partials/Personas.vue'
 import HTMLContent from '@/components/HTMLContent.vue'
 

@@ -34,7 +34,6 @@
 
           <section class="mb-6 w-2/3">
 
-            <!-- <HeroChat /> -->
             Roster:
             <Socket alignment="center" :sessionId="sessionId" :persona="selectedPersona" :userPrompt="chatPrompt"
               :messageHistory="messageHistory" :trigger="triggerGenerate" @messageComplete="messageComplete">

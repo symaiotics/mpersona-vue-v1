@@ -10,15 +10,14 @@ import LinkPersona from '@/pages/LinkPersona.vue'
 import LinkRoster from '@/pages/LinkRoster.vue'
 import LinkKnowledgeProfile from '@/pages/LinkKnowledgeProfile.vue'
 import Chat from '@/pages/Chat.vue'
+import Account from '@/pages/Account.vue'
+
 import FT from '@/pages/apps/FT.vue'
 import GC from '@/pages/apps/GC.vue'
 import GOV from '@/pages/apps/GOV.vue'
 import Translate from '@/pages/apps/Translate.vue'
 import Support from '@/pages/apps/Support.vue'
 
-import Blog from './pages/Blog.vue'
-import Help from './pages/Help.vue'
-import PageNotFound from './pages/PageNotFound.vue'
 
 const routerHistory = createWebHistory()
 
@@ -51,15 +50,9 @@ const router = createRouter({
     },
 
     {
-      path: '/blog',
-      name: 'blog',
-      component: Blog
-    },
-
-    {
-      path: '/help',
-      name: 'help',
-      component: Help
+      path: '/account',
+      name: 'account',
+      component: Account
     },
     {
       path: '/chat/:personaId?',
@@ -143,7 +136,7 @@ const router = createRouter({
 
     {
       path: '/:pathMatch(.*)*',
-      component: PageNotFound
+      component: Home
     }
   ]
 })
