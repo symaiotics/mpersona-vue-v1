@@ -2,12 +2,11 @@
   <div class="flex flex-col min-h-screen overflow-hidden">
 
     <!-- Site header -->
-    <Header />
+    <Header   />
 
     <!-- Page content -->
-    <main class="grow">
+    <main class = "grow">
 
-      <!-- Page illustration -->
       
       <!-- Page sections -->
       <Cosmic>

@@ -2,12 +2,11 @@
   <div class="flex flex-col min-h-screen overflow-hidden">
 
     <!-- Site header -->
-    <Header />
+    <Header  />
 
     <!-- Page content -->
-    <main class="grow">
+    <main class = "grow ">
 
-      <!-- Page illustration -->
       
       <section class="relative">
         <div class="max-w-9xl mx-auto px-4 sm:px-6 relative">

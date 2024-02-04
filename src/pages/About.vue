@@ -2,10 +2,10 @@
   <div class="flex flex-col min-h-screen overflow-hidden">
 
     <!-- Site header -->
-    <Header />
+    <Header  class="min-h-[100px]"/>
 
     <!-- Page content -->
-    <main class="grow">
+    <main class = "grow pt-[100px]">
 
       <!-- Page sections -->
       <HeroAbout />

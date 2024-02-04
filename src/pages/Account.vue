@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden">
     <!-- Site header -->
-    <Header />
+    <Header  class="min-h-[100px]"/>
 
     <!-- Page content -->
-    <main class="grow">
-      <!-- Page illustration -->
+    <main class = "grow pt-[100px]">
+
       <div
         class="relative max-w-9xl mx-auto h-0 pointer-events-none -z-1"
         aria-hidden="true"

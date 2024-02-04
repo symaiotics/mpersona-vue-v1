@@ -2,12 +2,11 @@
   <div class="flex flex-col min-h-screen overflow-hidden bg-gray-50 dark:bg-gray-900">
 
     <!-- Site header -->
-    <Header />
+    <Header  class="min-h-[100px]"/>
 
     <!-- Page content -->
-    <main class="grow">
+    <main class = "grow pt-[100px]">
 
-      <!-- Page illustration -->
       <section class="relative">
         <div class="w-auto mx-auto px-4 sm:px-6">
           <div class="pt-32 pb-12 md:pt-40 md:pb-20">

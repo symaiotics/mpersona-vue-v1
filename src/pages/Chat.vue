@@ -1,22 +1,14 @@
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden">
     <!-- Site header -->
-    <Header />
+    <Header  class="min-h-[100px]"/>
 
     <!-- Page content -->
-    <main class="grow">
-      <!-- Page illustration -->
+    <main class = "grow pt-[100px]">
 
-      <!-- Page sections -->
+      <section class="">
 
-      <section class="relative">
-        <!-- Background gradient (light version only) -->
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-gray-100 to-white pointer-events-none dark:hidden"
-          aria-hidden="true"
-        ></div>
-        <!-- End background gradient (light version only) -->
-        <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+        <div class=" max-w-6xl mx-auto px-4 sm:px-6">
           <div class="pb-8">
             <div class="max-w-6xl mx-auto text-center">
               <h1 class="h1 font-red-hat-display mb-4" data-aos="fade-down">
@@ -31,7 +23,7 @@
 
       <section class="relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
-          <div class="pt-32">
+          <div class="pt-2">
             <!-- <DisplayPersona alignment="center" :persona="selectedPersona" /> -->
 
            
