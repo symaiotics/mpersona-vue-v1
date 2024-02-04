@@ -73,7 +73,7 @@
 <script setup>
 import { ref, computed } from "vue";
 import { useRouter } from "vue-router";
-import defaultImage from "@/assets/images/persona1.png";
+import defaultImage from "@/images/persona1.png";
 import { usePersonas } from "@/composables/usePersonas.js";
 import { useCategories } from "@/composables/useCategories.js";
 

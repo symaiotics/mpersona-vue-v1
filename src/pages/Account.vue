@@ -1,10 +1,10 @@
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden">
     <!-- Site header -->
-    <Header  class="min-h-[100px]"/>
+    <Header  />
 
     <!-- Page content -->
-    <main class = "grow pt-[100px]">
+    <main class = "grow ">
 
       <div
         class="relative max-w-9xl mx-auto h-0 pointer-events-none -z-1"
