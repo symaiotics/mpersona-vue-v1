@@ -4,6 +4,10 @@ import { ref, computed } from 'vue';
 import { extractData } from '@/utils/extractJsonAndCode.js';
 import { v4 as uuidv4 } from 'uuid';
 
+import { useTokens } from '@/composables/useTokens.js';
+const { token, tokenDecoded } = useTokens();
+
+
 let ws = null;
 let wsUuid = ref(null);
 
@@ -203,7 +207,7 @@ export function useWebsockets() {
 
     function sendToServer(uuid, session, provider, model, temperature, systemPrompt, userPrompt, messageHistory, knowledgeProfileUuids, type) {
         if (ws) {
-            let wsSendVars = { uuid, session, provider, model, temperature, systemPrompt, userPrompt, messageHistory, knowledgeProfileUuids, type }
+            let wsSendVars = { token:token.value, uuid, session, provider, model, temperature, systemPrompt, userPrompt, messageHistory, knowledgeProfileUuids, type }
             console.log('Send to Server', wsSendVars)
             ws.send(JSON.stringify(wsSendVars));
         }
