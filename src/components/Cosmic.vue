@@ -1,5 +1,5 @@
 <template>
-    <div class="graph-container" ref="graphContainer">
+     <div ref="graphContainer" class="graph-container">
         <div class="slot-content" style="position: absolute; z-index: 10; width: 100%;">
             <slot></slot> <!-- This allows parent components to insert content -->
         </div>
@@ -10,6 +10,10 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue';
 import * as d3 from 'd3';
+
+import { v4 as uuidv4 } from 'uuid';
+const uniqueRefName = `graphContainer-${uuidv4()}`;
+
 // Store the interval ID
 let intervalId;
 
@@ -275,7 +279,7 @@ onMounted(() => {
         .data(nodes)
         .join('circle')
         .attr('r', d => d.radius)
-        .attr('fill', d => d3.interpolateBlues(Math.random()))
+        .attr('fill', d => d3.interpolateReds(Math.random()))
         .call(drag(simulation));
 
     // Function to update the graph with new random links
@@ -326,7 +330,7 @@ onMounted(() => {
     node = node.enter().append('circle').merge(node)
         // .attr('filter', 'url(#blur-filter)')
         .attr('r', d => d.radius)
-        .attr('fill', d => d3.interpolateBlues(Math.random()));
+        .attr('fill', d => d3.interpolateReds(Math.random()));
 };
 
 // Update the graph for the first time
@@ -357,7 +361,7 @@ intervalId = setInterval(updateGraph, 3000);;
 .graph-container {
     width: 100%;
     height: 100vh;
-    background: radial-gradient(circle at 50px 50px, #283c58, #070d16);
+    background: radial-gradient(circle at 50px 50px, #1f3f55, #378b94);
     position: relative;
     overflow: hidden;
 }

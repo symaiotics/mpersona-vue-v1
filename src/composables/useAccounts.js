@@ -21,6 +21,7 @@ let resetPassword = ref({
     password2: null,
 })
 
+let accountInfo = ref({});
 
 // by convention, composable function names start with "use"
 export function useAccounts() {
@@ -52,6 +53,24 @@ export function useAccounts() {
             password: null,
             password2: null,
         }
+    }
+
+
+    async function getOwnAccountInfo() {   
+        return new Promise(async (resolve, reject) => {
+
+        try {
+            let results = await configuredAxios.get('/accounts/own/info');
+            accountInfo.value = results.data.payload;
+            resolve(true);
+        }
+        catch (error) {
+            notify({ group: "failure", title: "Error", text: "Error loading your account info. Please login again." }, 4000) // 4s
+            console.log("Error", error);
+            reject(error);
+        }
+    });
+
     }
 
 
@@ -131,6 +150,7 @@ export function useAccounts() {
     return {
         newUser,
         resetPassword,
+        accountInfo,
 
         mailingList,
         resetNewUser,
@@ -140,6 +160,8 @@ export function useAccounts() {
         logout,
         sendPasswordResetRequest,
         attemptPasswordReset,
+
+        getOwnAccountInfo
 
     }
 }

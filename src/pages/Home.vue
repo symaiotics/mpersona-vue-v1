@@ -10,7 +10,7 @@
       
       <!-- Page sections -->
       <Cosmic>
-        <HeroHome />
+      <HeroHome />
       </Cosmic>
       <Stats />
 

@@ -99,12 +99,12 @@
                 <div class="w-full px-3 mb-4">
                   <label
                     class="block text-gray-800 dark:text-gray-300 text-sm font-medium mb-1"
-                    for="country"
+                    for="useCase"
                     >What role best describes you?</label
                   >
                   <select
                     v-model="newUser.useCase"
-                    id="country"
+                    id="useCase"
                     class="form-select w-full text-gray-800 dark:text-gray-300 dark:bg-gray-700 dark:border-gray-600"
                   >
                     <option value="researcher">AI Researcher</option>

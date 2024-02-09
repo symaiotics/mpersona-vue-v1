@@ -4,15 +4,14 @@
       <div class="pt-32 pb-10 md:pt-40 md:pb-16 text-center">
 
         <!-- Hero image -->
-        <img class="mx-auto h-auto" :src="Splash1" alt="mPErsona Logo" aria-hidden="true" style="width:300px;"/>
+        <img class="mx-auto h-auto" :src="Splash1" alt="mPErsona Logo" aria-hidden="true" style="width:300px; border-color:white; border-width:5px; border-radius:50%"/>
 
         <!-- Hero content -->
-        <h1 class="text-6xl font-red-hat-display text-gray-400 dark:text-white mb-4" data-aos="fade-down">mPersona</h1>
-        <h2 class="text-3xl font-red-hat-display text-gray-400 dark:text-white mb-4" data-aos="fade-down">by Symaiotics</h2>
-        <p class="text-xl text-gray-600 dark:text-gray-400" data-aos="fade-down" data-aos-delay="150">
+        <h1 class="font-red-hat-display text-3xl sm:text-6xl font-extrabold tracking-tighter mb-1"  data-aos="fade-down">mPersona</h1>
+        <p class="text-xl  dark:text-white" data-aos="fade-down" data-aos-delay="150">
           Build your team of digital AI personas.
         </p>
-        <p class="text-xl text-gray-600 dark:text-gray-400" data-aos="fade-down" data-aos-delay="150">
+        <p class="text-xl  dark:text-white" data-aos="fade-down" data-aos-delay="150">
           Automate your enterprise.
         </p>
         
