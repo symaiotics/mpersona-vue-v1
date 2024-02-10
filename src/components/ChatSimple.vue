@@ -1,26 +1,5 @@
 <template>
-  <div class="flex flex-col min-h-screen overflow-hidden">
-    <!-- Site header -->
-    <Header  class="min-h-[100px]"/>
-
-    <!-- Page content -->
-    <main class = "grow pt-[100px]">
-
-      <section class="">
-
-        <div class=" max-w-6xl mx-auto px-4 sm:px-6">
-          <div class="pb-8">
-            <div class="max-w-6xl mx-auto text-center">
-              <h1 class="h1 font-red-hat-display mb-4" data-aos="fade-down">
-                How can I help you today?
-              </h1>
-
-              <!-- <p class="text-xl text-gray-600 dark:text-gray-400" data-aos="fade-down" data-aos-delay="150">I am here to assist you within your inquiry.</p> -->
-            </div>
-          </div>
-        </div>
-      </section>
-
+   
       <section class="relative">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
           <div class="pt-2">
@@ -28,7 +7,7 @@
 
            
             <!-- {{ messageHistory }} -->
-            <Socket
+            <Socket v-show = "false"
               alignment="center"
               :model="selectedModel"
               :sessionId="sessionId"
@@ -39,14 +18,13 @@
               @messageComplete="messageComplete"
               @messagePartial="messagePartial"
             >
-              <!-- {{ messageHistory }} -->
-              <ChatWindow :messages="messageHistory" />
+            
             </Socket>
-            <!-- <ChatWindow :messages="messageHistory"/> -->
+            <ChatWindow :messages="messageHistory" />
 
             <div class="mx-auto md:px-4">
-              <div class="mt-6">
-                <VueMultiselect
+              <div class="mt-1">
+                <VueMultiselect v-show = false
                   v-model="selectedModel"
                   :options="adminModels"
                   :searchable="true"
@@ -142,19 +120,11 @@
               </div>
             </div>
 
-            <ChatList
-              v-if="selectedPersona?.knowledgeProfiles?.length"
-              :facts="factSearchResults"
-              @promptQuestion="promptQuestion"
-            />
+            
           </div>
         </div>
       </section>
-    </main>
-
-    <!-- Site footer -->
-    <Footer />
-  </div>
+   
 </template>
 
 <script setup>
@@ -162,16 +132,13 @@ import { ref, onMounted, nextTick, watch } from "vue";
 
 import { v4 as uuidv4 } from "uuid";
 
-import Header from "@/partials/Header.vue";
 import ChatList from "@/partials/ChatList.vue";
-import Footer from "@/partials/Footer.vue";
 
 import DocumentTable from "@/components/knowledgeMapping/DocumentTable.vue";
 import DocumentCreateEdit from "@/components/knowledgeMapping/DocumentCreateEdit.vue";
 import DocumentDragAndDrop from "@/components/knowledgeMapping/DocumentDragAndDrop.vue";
 import DivInput from "@/components/DivInput.vue";
 
-import DisplayPersona from "@/components/DisplayPersona.vue";
 import ChatWindow from "@/components/ChatWindow.vue";
 import Socket from "@/components/Socket.vue";
 import VueMultiselect from "vue-multiselect";
@@ -179,12 +146,7 @@ import VueMultiselect from "vue-multiselect";
 //Composables
 import { useDocuments } from "@/composables/knowledgeMapping/useDocuments.js";
 import { useModels } from "@/composables/useModels.js";
-import { usePersonas } from "@/composables/usePersonas.js";
-import { useFacts } from "@/composables/useFacts.js";
 const { adminModels, selectedModel } = useModels();
-const { personas, selectedPersona, newPersona, getPersonas, resetPersona } =
-  usePersonas();
-const { searchFacts, factSearchResults } = useFacts();
 
 const {
   defaultDocument,
@@ -208,31 +170,23 @@ const {
 
 let documentViewContent = ref(false);
 
-let props = defineProps({ personaId: { type: String, default: null } });
 let triggerGenerate = ref(false);
 let chatPrompt = ref("");
-// let initialPrompt = ref('Say hello.');
 let sessionId = ref(uuidv4());
 let messageHistory = ref([]);
 const textarea = ref(null);
 
 const customLabelModel = (option) => (option ? option.name.en : "");
+let selectedPersona = ref({basePrompt:"", description:{en:"Default",fr:"Default"}})
 
 onMounted(async () => {
-  if (props.personaId) {
-    await getPersonas();
-    selectedPersona.value = personas.value.find((persona) => {
-      return persona.uuid == props.personaId;
-    });
-
-    console.log(selectedPersona.value)
+ 
     // if (selectedPersona?.value?.basePrompt?.length) {
-    messageHistory.value.push({
+    messageHistory.value = [{
       role: "system",
       content: selectedPersona.value.basePrompt,
-    });
-    // }
-  }
+    }];
+  
 });
 
 function trigger() {
@@ -241,10 +195,7 @@ function trigger() {
   let checkedDocuments = documentsPending.value.filter((doc) => {
     return doc._checked;
   });
-  console.log(checkedDocuments.length);
-  console.log(messageHistory?.value?.length);
-  console.log(messageHistory.value);
-  console.log(messageHistory?.value?.[0]?.role == "system");
+
   if (
     checkedDocuments.length &&
     messageHistory.value.length &&
@@ -275,18 +226,12 @@ function trigger() {
         return kp.uuid;
       }) || [];
   if (chatPrompt?.value?.length)
-    searchFacts(chatPrompt.value, knowledgeProfileUuids);
+    // searchFacts(chatPrompt.value, knowledgeProfileUuids);
   nextTick(() => {
     chatPrompt.value = "";
   });
 }
 
-// function messageComplete(val) {
-//   //On message completion add it
-//   messageHistory.value.push({ role: "system", content: val.message })
-//   messageHistory.value = cleanseMessageHistory(messageHistory.value)
-//   // chatPrompt.value = "";
-// }
 
 function messagePartial(val) {
   if (messageHistory?.value?.length) {
@@ -315,46 +260,7 @@ function messageComplete(val) {
     }
   }
 }
-
-function cleanseMessageHistory(messageHistory) {
-  // Define a function to check if the messageHistory exceeds the length limit.
-  const exceedsLimit = () => JSON.stringify(messageHistory).length > 5000;
-
-  // If the length is more than 8 items, handle normally
-  if (messageHistory.length > 8) {
-    // Truncate the 5 items before the last 2
-    for (
-      let i = messageHistory.length - 7;
-      i <= messageHistory.length - 3;
-      i++
-    ) {
-      if (messageHistory[i].content.length > 500) {
-        messageHistory[i].content = messageHistory[i].content.substring(0, 500);
-      }
-    }
-
-    // If still exceeds limit after truncation, remove middle items
-    if (exceedsLimit()) {
-      return [
-        messageHistory[0],
-        ...messageHistory.slice(messageHistory.length - 7),
-      ];
-    }
-
-    return messageHistory;
-  } else {
-    // If 8 or fewer items, truncate all but the 1st and last 2 items
-    for (let i = 1; i < messageHistory.length - 2; i++) {
-      if (messageHistory[i].content.length > 500) {
-        messageHistory[i].content = messageHistory[i].content.substring(0, 500);
-      }
-    }
-
-    // No need to remove any items since there are 8 or fewer
-    return messageHistory;
-  }
-}
-
+ 
 const adjustHeight = () => {
   nextTick(() => {
     textarea.value.style.height = "auto";

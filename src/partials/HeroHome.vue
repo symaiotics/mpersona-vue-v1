@@ -14,6 +14,8 @@
         <p class="text-xl  dark:text-white" data-aos="fade-down" data-aos-delay="150">
           Automate your enterprise.
         </p>
+
+        <slot></slot>
         
       </div>
     </div>

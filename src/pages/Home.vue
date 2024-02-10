@@ -10,8 +10,23 @@
       
       <!-- Page sections -->
       <Cosmic>
-      <HeroHome />
+      <HeroHome >
+    
+        </HeroHome>
       </Cosmic>
+
+
+      <div class = "m-10 bg-white dark:bg-gray-800 py-8 px-4 shadow-lg rounded-lg">
+
+        <div class="max-w-3xl mx-auto text-center  ">
+          <h1 class="h2 font-red-hat-display mb-4">Lets go!</h1>
+          <p class="text-xl text-gray-600 dark:text-gray-400">Begin chatting immediately to your Persona partners.</p>
+        </div>
+
+      <ChatSimple/>
+
+      </div>
+
       <Stats />
 
       <section class="container mx-auto p-8 flex" data-aos="fade-up" data-aos-delay="100">
@@ -181,6 +196,7 @@ import Personas from '@/partials/Personas.vue'
 import Footer from '@/partials/Footer.vue'
 
 import Cosmic from '@/components/Cosmic.vue'
+import ChatSimple from '@/components/ChatSimple.vue'
 import { notify } from "notiwind"
 
 
