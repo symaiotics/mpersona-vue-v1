@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <form @submit.prevent="createNewAccount" class="flex flex-wrap -mx-3">
+          <form @submit.prevent="ownAccountUpdate(account)" class="flex flex-wrap -mx-3">
 
             <div class="w-full px-3 mb-4">
               <button
@@ -325,13 +325,9 @@ import Footer from "@/partials/Footer.vue";
 import DragAndDropZip from "@/components/DragAndDropZip.vue";
 
 import { useAccounts } from "@/composables/useAccounts.js";
-const { accountInfo, ownAccountInfo, ownDataDownload, ownDataUpload,ownDataDelete, ownAccountDelete  } = useAccounts();
+const { accountInfo, ownAccountInfo, ownDataDownload, ownDataUpload,ownDataDelete, ownAccountDelete, ownAccountUpdate  } = useAccounts();
 
-onMounted(() => {
-  ownAccountInfo().then((results) => {
-    account.value = accountInfo.value;
-  });
-});
+
 
 const router = useRouter();
 
@@ -346,6 +342,12 @@ let account = ref({
 });
 
 let zipToUpload = ref(null)
+
+onMounted(() => {
+  ownAccountInfo().then((results) => {
+    account.value = accountInfo.value;
+  });
+});
 
 function displaySubscription(sub) {
   if (sub == null) return "Free";

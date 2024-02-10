@@ -135,6 +135,24 @@ export function useAccounts() {
         }
     });
     }
+
+    
+    async function ownAccountUpdate(account) {   
+        return new Promise(async (resolve, reject) => {
+        try {
+            let results = await configuredAxios.post('/accounts/own/update',{account});
+            accountInfo.value = results.data.payload;
+            notify({ group: "success", title: "Success", text: "Account info updated." }, 4000) // 4s
+
+            resolve(true);
+        }
+        catch (error) {
+            notify({ group: "failure", title: "Error", text: "Error loading your account info. Please  and try again." }, 4000) // 4s
+            console.log("Error", error);
+            reject(error);
+        }
+    });
+    }
     
     async function ownDataDownload() {   
         return new Promise(async (resolve, reject) => {
@@ -247,7 +265,10 @@ export function useAccounts() {
         sendPasswordResetRequest,
         attemptPasswordReset,
 
+
         ownAccountInfo,
+        ownAccountUpdate,
+        
         ownDataDownload,
         ownDataUpload,
         ownDataDelete,
