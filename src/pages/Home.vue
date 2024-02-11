@@ -16,14 +16,15 @@
       </Cosmic>
 
 
-      <div class = "m-10 bg-white dark:bg-gray-800 py-8 px-4 shadow-lg rounded-lg">
+      <div class = "m-4 bg-white dark:bg-gray-800 py-8 px-2 shadow-lg rounded-lg">
 
         <div class="max-w-3xl mx-auto text-center  ">
           <h1 class="h2 font-red-hat-display mb-4">Lets go!</h1>
-          <p class="text-xl text-gray-600 dark:text-gray-400">Begin chatting immediately to your Persona partners.</p>
+          <p class="text-xl text-gray-600 dark:text-gray-400">Begin chatting immediately with your Persona partners.</p>
         </div>
 
       <ChatSimple/>
+      <!-- {{ selectedModel }} -->
 
       </div>
 
@@ -203,9 +204,11 @@ import { notify } from "notiwind"
 //composables
 import { useStats } from '@/composables/useStats.js'
 import { useAccounts } from '@/composables/useAccounts.js'
+import { useModels } from '@/composables/useModels.js'
 import { usePersonas } from '@/composables/usePersonas.js'
 import { useCategories } from '@/composables/useCategories.js'
 const { getStats, nodeVersion } = useStats()
+const { selectedModel } = useModels()
 const { personas, usedCategories, skills, getPersonas, getSkills, getUsedCategories } = usePersonas()
 const { categories, getCategories } = useCategories()
 const { mailingList } = useAccounts()

@@ -46,7 +46,7 @@ export function useModels() {
             var response = await configuredAxios.get(env.API_URL + '/models', );
             adminModels.value = response.data.payload;
             //Select the first one (most recent, as default)
-            if(adminModels.value.length) selectedModel.value = adminModels.value[0]
+            if(adminModels.value.length && !selectedModel.value) selectedModel.value = adminModels.value[0]
             console.log("Loaded Models", adminModels.value)
         }
         catch (error) {

@@ -1,7 +1,7 @@
 <template>
    
       <section class="relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
+        <div class="max-w-6xl mx-auto px-2 sm:px-6 relative">
           <div class="pt-2">
             <!-- <DisplayPersona alignment="center" :persona="selectedPersona" /> -->
 
@@ -24,15 +24,7 @@
 
             <div class="mx-auto md:px-4">
               <div class="mt-1">
-                <VueMultiselect v-show = false
-                  v-model="selectedModel"
-                  :options="adminModels"
-                  :searchable="true"
-                  :close-on-select="true"
-                  :custom-label="customLabelModel"
-                  :show-labels="false"
-                  placeholder="Pick a model"
-                />
+              
 
                 <form
                   @submit.prevent="trigger"
@@ -70,6 +62,16 @@
                     </svg>
                   </button>
                 </form>
+
+                <VueMultiselect v-show = true
+                  v-model="selectedModel"
+                  :options="adminModels"
+                  :searchable="true"
+                  :close-on-select="true"
+                  :custom-label="customLabelModel"
+                  :show-labels="false"
+                  placeholder="Pick a model"
+                />
 
                 <DocumentDragAndDrop 
                   @documentsChanged="documentsPendingChanged"
@@ -146,7 +148,7 @@ import VueMultiselect from "vue-multiselect";
 //Composables
 import { useDocuments } from "@/composables/knowledgeMapping/useDocuments.js";
 import { useModels } from "@/composables/useModels.js";
-const { adminModels, selectedModel } = useModels();
+const { adminModels, selectedModel, getModels } = useModels();
 
 const {
   defaultDocument,
@@ -181,11 +183,17 @@ let selectedPersona = ref({basePrompt:"", description:{en:"Default",fr:"Default"
 
 onMounted(async () => {
  
+  await getModels();
     // if (selectedPersona?.value?.basePrompt?.length) {
     messageHistory.value = [{
       role: "system",
       content: selectedPersona.value.basePrompt,
     }];
+
+    //Attempt to use Claude for maximum speed.
+    let claude = adminModels.value.find((model)=>{return model.model == 'claude-instant-1.2'})
+    if(claude) selectedModel.value = claude;
+    console.log("Claude", selectedModel.value)
   
 });
 

@@ -5,7 +5,7 @@
             :class="isDraggingOver ? 'bg-gray-300 dark:bg-gray-700' : 'bg-gray-100 dark:bg-gray-800'"
             class="border p-6 rounded-md transition-colors duration-300 cursor-pointer dark:hover:bg-slate-700 hover:bg-gray-200">
             <input type="file" ref="fileInput" @change="handleFilesChange" multiple hidden
-                accept=".docx,.xlsx,.json,.js,.txt,.yaml">
+                accept=".docx,.xlsx,.json,.js,.txt,.yaml,.html,.htm,.xml">
             <p class="text-center text-gray-500 dark:text-gray-200">
                 {{ L_("Drag and drop or click to select your .docx, .xlsx, .json, .js, .yaml, or .txt files here.") }}
             </p>
