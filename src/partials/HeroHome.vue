@@ -14,6 +14,9 @@
         <p class="text-xl  dark:text-white" data-aos="fade-down" data-aos-delay="150">
           Automate your enterprise.
         </p>
+        <p class="text-l  dark:text-white" data-aos="fade-down" data-aos-delay="150">
+          <a href = "./terms/">(Alpha Version)</a>
+        </p>
 
         <slot></slot>
         

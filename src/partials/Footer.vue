@@ -10,6 +10,10 @@
           <div class="text-gray-600 dark:text-gray-400 text-sm mr-4">
             &copy; Symaiotics Corporation
           </div>
+
+          <div class="text-gray-600 dark:text-gray-400 text-sm mr-4">
+            <a href = "./terms/">Terms and Conditions</a>
+          </div>
           <slot> </slot>
         </div>
       </div>

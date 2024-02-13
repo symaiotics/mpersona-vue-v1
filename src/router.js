@@ -18,6 +18,7 @@ import GOV from '@/pages/apps/GOV.vue'
 import Translate from '@/pages/apps/Translate.vue'
 import Support from '@/pages/apps/Support.vue'
 
+import Terms from '@/pages/Terms.vue'
 
 const routerHistory = createWebHistory()
 
@@ -53,6 +54,11 @@ const router = createRouter({
       path: '/account',
       name: 'account',
       component: Account
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: Terms
     },
     {
       path: '/chat/:personaId?',
