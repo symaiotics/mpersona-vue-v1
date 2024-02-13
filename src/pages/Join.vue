@@ -23,7 +23,7 @@
                 Develop as many private personas as you like.
               </p>
               <p class="text-lg text-gray-600 dark:text-gray-400">
-                Currently free to join and use during Alpha testing.
+                Currently free to join and use during Alpha testing. <br/><i>Note: this instance of mPersona is for testing and evaluation purposes only. </i>
               </p>
             </div>
 
@@ -149,6 +149,7 @@
                       />
                     </svg>
                   </button>
+                  <p> <a href = "./terms/">By creating this account, you are agreeing to abide by the mPersona.com Terms and Conditions.</a></p>
                 </div>
                 <div class="w-full px-3">
                   <button

@@ -14,24 +14,33 @@
             >
               Terms and Conditions
             </h1>
+            <p>
+              Last updated: February 13th, 2024.
+            </p>
           </div>
         </div>
       </section>
 
       <section class="max-w-4xl mx-auto px-4 sm:px-6 text-white">
         <p class="mb-4">
-          Welcome to mPersona.com. These Terms and Conditions ("Terms") govern
+          <b>Welcome to mPersona.com. </b><br/><br/>These Terms and Conditions ("Terms") govern
           your use of mPersona.com (the "Website"), a service provided by
           Symaiotics Corporation ("Symaiotics", "we", "us", or "our"), located
           in Ontario, Canada. The Website integrates language model services
           from Anthropic Claude, OpenAI, and Azure OpenAI (collectively, the
-          "LLM Services"). By accessing or using our Website, you ("User",
+          "LLM Services"). <br/><br/>By accessing or using our Website, you ("User",
           "you", or "your") agree to be bound by these Terms, which include our
           Acceptable Use Policy and the referenced Data, Privacy, and Security
           policies.
         </p>
 
         <div class="space-y-4">
+
+          <p>
+  The services provided on this website and these terms are subject to change at any time without notice.
+</p>
+
+
           <h2 class="text-xl font-semibold">1. Acceptance of Terms</h2>
           <p>
             By accessing or using the Website, you confirm that you have read,

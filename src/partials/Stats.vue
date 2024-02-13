@@ -3,7 +3,12 @@
 <section class="border-t border-transparent dark:border-gray-800">
     <div class="py-12 md:py-20">
 
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center align-center">
+
+   
+        <div class="video-container">
+          <iframe class="youtube-video" width="560" height="315" src="https://www.youtube.com/embed/CqdfG-7aRJQ?si=kaCk0DM-5bTOwCeS" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
 
         <!-- Section header -->
         <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16">
@@ -106,3 +111,18 @@
 import { useStats } from '@/composables/useStats.js'
 const { accountCount, personaCount } = useStats()
 </script>
+
+<style scoped>
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom:20px
+}
+
+.youtube-video {
+  max-width: 100%;
+  height: 350px;
+}
+</style>
