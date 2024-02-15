@@ -184,14 +184,16 @@
                 </button>
             </div>
 
-            <button v-if="localRoster.uuid" @click="demo(localRoster.uuid, 'gc')"
-                class="btn text-white bg-green-500 hover:bg-green-400 m-4">Open GC Wrapp</button>
 
-            <button v-if="localRoster.uuid" @click="demo(localRoster.uuid, 'translate')"
-                class="btn text-white bg-green-500 hover:bg-green-400 m-4">Open Translation Wrapp</button>
+                <button v-if="localRoster.uuid" @click="demo(localRoster.uuid, 'gcChat')"
+                class="btn text-white bg-green-500 hover:bg-green-400 m-4">Open GC Chat Wrapp</button>
 
-                <button v-if="localRoster.uuid" @click="demo(localRoster.uuid, 'support')"
-                class="btn text-white bg-green-500 hover:bg-green-400 m-4">Open Knowledge Wrapp</button>
+
+            <button v-if="localRoster.uuid" @click="demo(localRoster.uuid, 'gcTranslate')"
+                class="btn text-white bg-green-500 hover:bg-green-400 m-4">Open GC Translation Wrapp</button>
+
+                <button v-if="localRoster.uuid" @click="demo(localRoster.uuid, 'policy')"
+                class="btn text-white bg-green-500 hover:bg-green-400 m-4">Open Policy Wrapp</button>
 
 
         </template>

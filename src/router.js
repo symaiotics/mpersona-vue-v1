@@ -12,11 +12,9 @@ import LinkKnowledgeProfile from '@/pages/LinkKnowledgeProfile.vue'
 import Chat from '@/pages/Chat.vue'
 import Account from '@/pages/Account.vue'
 
-import FT from '@/pages/apps/FT.vue'
-import GC from '@/pages/apps/GC.vue'
-import GOV from '@/pages/apps/GOV.vue'
-import Translate from '@/pages/apps/Translate.vue'
-import Support from '@/pages/apps/Support.vue'
+import GCChat from '@/pages/apps/GCChat.vue'
+import GCTranslate from '@/pages/apps/GCTranslate.vue'
+import Policy from '@/pages/apps/Policy.vue'
 
 import Terms from '@/pages/Terms.vue'
 
@@ -67,38 +65,23 @@ const router = createRouter({
       props: true,
     },
     {
-      path: '/apps/ft/:rosterUuid?',
-      name: 'ft',
-      component: FT,
+      path: '/apps/GCChat/:rosterUuid?',
+      name: 'gcChat',
+      component: GCChat,
       props: true,
     },
     {
-      path: '/apps/gc/:rosterUuid?',
-      name: 'gc',
-      component: GC,
+      path: '/apps/GCTranslate/:rosterUuid?',
+      name: 'gcTranslate',
+      component: GCTranslate,
       props: true,
     },
     {
-      path: '/apps/gov/:personaId?',
-      name: 'gov',
-      component: GOV,
+      path: '/apps/Policy/:rosterUuid?',
+      name: 'policy',
+      component: Policy,
       props: true,
     },
-
-    {
-      path: '/apps/translate/:rosterUuid?',
-      name: 'translate',
-      component: Translate,
-      props: true,
-    },
-    ,
-    {
-      path: '/apps/support/:rosterUuid?',
-      name: 'support',
-      component: Support,
-      props: true,
-    },
-
 
     {
       path: '/interactLive',
