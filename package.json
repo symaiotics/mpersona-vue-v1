@@ -1,6 +1,6 @@
 {
   "name": "mpersona-vue",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "scripts": {
     "dev": "vite --mode development",
     "build": "vite build --mode production",
@@ -16,8 +16,10 @@
     "aos": "^3.0.0-beta.6",
     "axios": "^1.4.0",
     "d3": "^7.8.5",
+    "docx": "^8.5.0",
     "dotenv": "^16.3.1",
     "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
     "html2canvas": "^1.4.1",
     "mammoth": "^1.6.0",
     "markdown-it": "^13.0.1",
@@ -36,13 +38,13 @@
     "vue-slider-component": "^4.1.0-beta.7"
   },
   "devDependencies": {
+    "@import-meta-env/cli": "^0.1.7",
+    "@import-meta-env/unplugin": "^0.1.8",
     "@vitejs/plugin-vue": "^4.2.1",
     "@vue/compiler-sfc": "^3.2.20",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "tailwindcss": "^3.3.2",
-    "vite": "^4.3.5",
-    "@import-meta-env/cli": "^0.1.7",
-    "@import-meta-env/unplugin": "^0.1.8"
+    "vite": "^4.3.5"
   }
 }

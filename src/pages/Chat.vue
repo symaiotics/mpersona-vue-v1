@@ -1,14 +1,12 @@
 <template>
   <div class="flex flex-col min-h-screen overflow-hidden">
     <!-- Site header -->
-    <Header  class="min-h-[100px]"/>
+    <Header class="min-h-[100px]" />
 
     <!-- Page content -->
-    <main class = "grow pt-[100px]">
-
+    <main class="grow pt-[100px]">
       <section class="">
-
-        <div class=" max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
           <div class="pb-8">
             <div class="max-w-6xl mx-auto text-center">
               <h1 class="h1 font-red-hat-display mb-4" data-aos="fade-down">
@@ -26,7 +24,6 @@
           <div class="pt-2">
             <!-- <DisplayPersona alignment="center" :persona="selectedPersona" /> -->
 
-           
             <!-- {{ messageHistory }} -->
             <Socket
               alignment="center"
@@ -93,7 +90,7 @@
                   </button>
                 </form>
 
-                <DocumentDragAndDrop 
+                <DocumentDragAndDrop
                   @documentsChanged="documentsPendingChanged"
                 />
 
@@ -147,6 +144,20 @@
               :facts="factSearchResults"
               @promptQuestion="promptQuestion"
             />
+
+            <div class="m-4 flex space-x-2">
+              <button
+                @click="downloadJson"
+                class="btn btn-small text-white bg-gray-500 hover:bg-teal-400 flex items-center mb-3">
+                <span>Download (JSON)</span>
+              </button>
+
+              <button
+                @click="downloadWord"
+                class="btn text-white bg-gray-500 hover:bg-teal-400 flex items-center mb-3">
+                <span>Download (Word)</span>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -159,8 +170,13 @@
 
 <script setup>
 import { ref, onMounted, nextTick, watch } from "vue";
-
 import { v4 as uuidv4 } from "uuid";
+
+
+//File Save
+import { Document, Packer, Paragraph, TextRun, UnderlineType } from 'docx';
+import { saveAs } from 'file-saver';
+import { marked } from 'marked';
 
 import Header from "@/partials/Header.vue";
 import ChatList from "@/partials/ChatList.vue";
@@ -225,7 +241,7 @@ onMounted(async () => {
       return persona.uuid == props.personaId;
     });
 
-    console.log(selectedPersona.value)
+    console.log(selectedPersona.value);
     // if (selectedPersona?.value?.basePrompt?.length) {
     messageHistory.value.push({
       role: "system",
@@ -408,4 +424,74 @@ function documentsPendingSelectToView(index) {
     selectedDocumentPending.value = { ...selectedDocumentPending.value };
   });
 }
+
+
+const downloadJson = () => {
+  const blob = new Blob([JSON.stringify(messageHistory.value)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'mPersonaChat.json';
+  link.click();
+  URL.revokeObjectURL(link.href);
+};
+
+
+
+
+async function downloadWord() {
+  // Create a new document
+  const doc = new Document({
+    sections: [{
+      properties: {},
+      children: createDocumentBody(messageHistory.value),
+    }],
+  });
+
+  // Use Packer to generate a Blob from the document
+  const blob = await Packer.toBlob(doc);
+  // Save the Blob as a DOCX file
+  saveAs(blob, 'mPersonaChat.docx');
+}
+
+function createDocumentBody(dataArray) {
+  return dataArray.map(item => {
+    // Convert markdown to HTML
+    const htmlContent = marked(item.content);
+    // Convert HTML to plain text, preserving line breaks
+    const textLines = htmlContent.split(/<br\s*\/?>/i); // Split the content by HTML <br> tags
+
+    // Create a TextRun for each line, preserving line breaks
+    const textRuns = textLines.flatMap((line, index) => {
+      // Convert the line from HTML to plain text
+      const plainText = line.replace(/<[^>]+>/g, ''); // Remove HTML tags
+      // For the last line, no need to add a break
+      return index < textLines.length - 1
+        ? [new TextRun(plainText), new TextRun({ text: '', break: "line" })]
+        : [new TextRun(plainText)];
+    });
+
+    // Combine all TextRuns into a single Paragraph
+    return new Paragraph({
+      children: [
+        new TextRun({
+          text: `${item.role}: `,
+          bold: true,
+          size: 24,
+        }),
+        ...textRuns, // Spread syntax to include all text runs
+      ],
+    });
+  });
+}
+
+function htmlToPlainText(html) {
+  const tempDivElement = document.createElement('div');
+  tempDivElement.innerHTML = html;
+  return tempDivElement.textContent || tempDivElement.innerText || '';
+}
+
+
+
+
+
 </script>
