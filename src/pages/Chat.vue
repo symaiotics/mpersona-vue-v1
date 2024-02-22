@@ -37,7 +37,7 @@
               @messagePartial="messagePartial"
             >
               <!-- {{ messageHistory }} -->
-              <ChatWindow :messages="messageHistory" />
+              <ChatWindow :messages="messageHistory" @removeMessage = "removeMessage" />
             </Socket>
             <!-- <ChatWindow :messages="messageHistory"/> -->
 
@@ -146,17 +146,17 @@
             />
 
             <div class="m-4 flex space-x-2">
-              <button
-                @click="downloadJson"
-                class="btn btn-small text-white bg-gray-500 hover:bg-teal-400 flex items-center mb-3">
-                <span>Download (JSON)</span>
-              </button>
+              <MessageHistoryDownload :messageHistory="messageHistory" />
+              <MessageHistoryDownload
+                :messageHistory="messageHistory"
+                format="docx"
+              />
+              <MessageHistoryUpload
+                format="json"
+                @complete="uploadMessageHistory"
+              />
 
-              <button
-                @click="downloadWord"
-                class="btn text-white bg-gray-500 hover:bg-teal-400 flex items-center mb-3">
-                <span>Download (Word)</span>
-              </button>
+             
             </div>
           </div>
         </div>
@@ -172,12 +172,6 @@
 import { ref, onMounted, nextTick, watch } from "vue";
 import { v4 as uuidv4 } from "uuid";
 
-
-//File Save
-import { Document, Packer, Paragraph, TextRun, UnderlineType } from 'docx';
-import { saveAs } from 'file-saver';
-import { marked } from 'marked';
-
 import Header from "@/partials/Header.vue";
 import ChatList from "@/partials/ChatList.vue";
 import Footer from "@/partials/Footer.vue";
@@ -186,6 +180,8 @@ import DocumentTable from "@/components/knowledgeMapping/DocumentTable.vue";
 import DocumentCreateEdit from "@/components/knowledgeMapping/DocumentCreateEdit.vue";
 import DocumentDragAndDrop from "@/components/knowledgeMapping/DocumentDragAndDrop.vue";
 import DivInput from "@/components/DivInput.vue";
+import MessageHistoryDownload from "@/components/MessageHistoryDownload.vue";
+import MessageHistoryUpload from "@/components/MessageHistoryUpload.vue";
 
 import DisplayPersona from "@/components/DisplayPersona.vue";
 import ChatWindow from "@/components/ChatWindow.vue";
@@ -253,14 +249,12 @@ onMounted(async () => {
 
 function trigger() {
   //Save the history
+if(!messageHistory.value.length) messageHistory.value == [{role:"system", content:""}];
 
   let checkedDocuments = documentsPending.value.filter((doc) => {
     return doc._checked;
   });
-  console.log(checkedDocuments.length);
-  console.log(messageHistory?.value?.length);
-  console.log(messageHistory.value);
-  console.log(messageHistory?.value?.[0]?.role == "system");
+
   if (
     checkedDocuments.length &&
     messageHistory.value.length &&
@@ -426,72 +420,22 @@ function documentsPendingSelectToView(index) {
 }
 
 
-const downloadJson = () => {
-  const blob = new Blob([JSON.stringify(messageHistory.value)], { type: 'application/json' });
-  const link = document.createElement('a');
-  link.href = URL.createObjectURL(blob);
-  link.download = 'mPersonaChat.json';
-  link.click();
-  URL.revokeObjectURL(link.href);
-};
+function uploadMessageHistory(newMessageHistory) {
+  //append to current message history
 
-
-
-
-async function downloadWord() {
-  // Create a new document
-  const doc = new Document({
-    sections: [{
-      properties: {},
-      children: createDocumentBody(messageHistory.value),
-    }],
+  newMessageHistory.forEach((message, index) => {
+    if (index > 0)
+      //skip the system prompt for the Persona
+      messageHistory.value.push(message);
   });
-
-  // Use Packer to generate a Blob from the document
-  const blob = await Packer.toBlob(doc);
-  // Save the Blob as a DOCX file
-  saveAs(blob, 'mPersonaChat.docx');
+  
+  console.log(newMessageHistory);
 }
 
-function createDocumentBody(dataArray) {
-  return dataArray.map(item => {
-    // Convert markdown to HTML
-    const htmlContent = marked(item.content);
-    // Convert HTML to plain text, preserving line breaks
-    const textLines = htmlContent.split(/<br\s*\/?>/i); // Split the content by HTML <br> tags
-
-    // Create a TextRun for each line, preserving line breaks
-    const textRuns = textLines.flatMap((line, index) => {
-      // Convert the line from HTML to plain text
-      const plainText = line.replace(/<[^>]+>/g, ''); // Remove HTML tags
-      // For the last line, no need to add a break
-      return index < textLines.length - 1
-        ? [new TextRun(plainText), new TextRun({ text: '', break: "line" })]
-        : [new TextRun(plainText)];
-    });
-
-    // Combine all TextRuns into a single Paragraph
-    return new Paragraph({
-      children: [
-        new TextRun({
-          text: `${item.role}: `,
-          bold: true,
-          size: 24,
-        }),
-        ...textRuns, // Spread syntax to include all text runs
-      ],
-    });
-  });
+function removeMessage(index)
+{
+  console.log(index)
+  messageHistory.value.splice(index+1,1)
 }
-
-function htmlToPlainText(html) {
-  const tempDivElement = document.createElement('div');
-  tempDivElement.innerHTML = html;
-  return tempDivElement.textContent || tempDivElement.innerText || '';
-}
-
-
-
-
 
 </script>
