@@ -37,7 +37,10 @@
               @messagePartial="messagePartial"
             >
               <!-- {{ messageHistory }} -->
-              <ChatWindow :messages="messageHistory" @removeMessage = "removeMessage" />
+              <ChatWindow
+                :messages="messageHistory"
+                @removeMessage="removeMessage"
+              />
             </Socket>
             <!-- <ChatWindow :messages="messageHistory"/> -->
 
@@ -145,18 +148,19 @@
               @promptQuestion="promptQuestion"
             />
 
-            <div class="m-4 flex space-x-2">
-              <MessageHistoryDownload :messageHistory="messageHistory" />
-              <MessageHistoryDownload
-                :messageHistory="messageHistory"
-                format="docx"
-              />
-              <MessageHistoryUpload
-                format="json"
-                @complete="uploadMessageHistory"
-              />
-
-             
+            <div class="text-center m-2">
+              <span>Upload/Download Message History</span>
+              <div class=" mx-auto flex justify-center flex-wrap">
+                <MessageHistoryDownload :messageHistory="messageHistory" />
+                <MessageHistoryDownload
+                  :messageHistory="messageHistory"
+                  format="docx"
+                />
+                <MessageHistoryUpload
+                  format="json"
+                  @complete="uploadMessageHistory"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -249,7 +253,8 @@ onMounted(async () => {
 
 function trigger() {
   //Save the history
-if(!messageHistory.value.length) messageHistory.value == [{role:"system", content:""}];
+  if (!messageHistory.value.length)
+    messageHistory.value == [{ role: "system", content: "" }];
 
   let checkedDocuments = documentsPending.value.filter((doc) => {
     return doc._checked;
@@ -419,7 +424,6 @@ function documentsPendingSelectToView(index) {
   });
 }
 
-
 function uploadMessageHistory(newMessageHistory) {
   //append to current message history
 
@@ -428,14 +432,12 @@ function uploadMessageHistory(newMessageHistory) {
       //skip the system prompt for the Persona
       messageHistory.value.push(message);
   });
-  
+
   console.log(newMessageHistory);
 }
 
-function removeMessage(index)
-{
-  console.log(index)
-  messageHistory.value.splice(index+1,1)
+function removeMessage(index) {
+  console.log(index);
+  messageHistory.value.splice(index + 1, 1);
 }
-
 </script>

@@ -1,7 +1,7 @@
 <template>
   <button
     @click="upload"
-    class="btn btn-small text-white bg-cyan-700 hover:bg-cyan-400 flex items-center mb-3"
+    class="btn btn-small m-2 text-white bg-cyan-700 hover:bg-cyan-400 flex items-center mb-3"
   >
     <ArrowUpTrayIcon class="h-6 w-6 text-gray-200 transform hover:scale-105" />
     <span class="ml-2">({{ props.format.toUpperCase() }})</span>
