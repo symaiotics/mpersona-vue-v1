@@ -18,6 +18,10 @@ import Policy from '@/pages/apps/Policy.vue'
 
 import Terms from '@/pages/Terms.vue'
 
+
+import Trust from '@/pages/Trust.vue'
+
+
 const routerHistory = createWebHistory()
 
 const router = createRouter({
@@ -92,6 +96,11 @@ const router = createRouter({
       path: '/personas',
       name: 'personas',
       component: NewPersonas
+    },
+    {
+      path: '/trust',
+      name: 'trust',
+      component: Trust
     },
     {
       path: '/join',

@@ -1309,15 +1309,14 @@ function documentsPendingProcessCheckedFiles() {
     let nextDoc = documentsPending.value.find((doc) => { return doc._processingStatus == 'pending' })
 
     //See how many concurrent processors there are running
-    let processingCount = prompts.value.documents.set.filter((prompt) => { return prompt.status == 'processing' }).length;
+    let processingCount = prompts.value.documents.set.filter((prompt) => { return prompt?.status == 'processing' }).length;
 
     //If both conditions meet
     if (nextDoc && processingCount < promptMax.value) {
-
-      //Add a nwe prompt
-      let promptIndex = prompts.value.documents.set.length - 1;
+      //Add a new prompt
       prompts.value.documents.set.push(createPrompt({ promptType: "documents", status: "waiting", persona: checkAssignment('triage').persona, trigger: false }));
-
+      let promptIndex = prompts.value.documents.set.length - 1;
+      console.log("prompts.value.documents.set", prompts.value.documents.set)
       nextDoc._processingStatus = 'processing';
       nextDoc._processingStatusNumber = 0;
       prompts.value.documents.set[promptIndex].status = "processing";
