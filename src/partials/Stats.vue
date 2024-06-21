@@ -37,21 +37,7 @@
     <div class="pb-12 md:pb-20">
 
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 text-center mb-6">
-
-              <!-- 1st item -->
-              <div class="bg-white dark:bg-gray-800 py-8 px-4 shadow-lg rounded-lg" data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]">
-          <div class="font-red-hat-display text-2xl sm:text-3xl font-extrabold tracking-tighter mb-1"> {{ accountCount }}</div>
-          <div class="text-gray-600 dark:text-gray-400">Users</div>
-        </div>
-
-        <!-- 2nd item -->
-        <div class="bg-white dark:bg-gray-800 py-8 px-4 shadow-lg rounded-lg" data-aos="fade-down" data-aos-anchor="[data-aos-id-stats]">
-          <div class="font-red-hat-display text-2xl sm:text-3xl font-extrabold tracking-tighter mb-1"> {{ personaCount }}</div>
-          <div class="text-gray-600 dark:text-gray-400">Personas</div>
-        </div>
-</div>  
-
+ 
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-center mb-6">
 
@@ -108,8 +94,6 @@
 </template>
 
 <script setup>
-import { useStats } from '@/composables/useStats.js'
-const { accountCount, personaCount } = useStats()
 </script>
 
 <style scoped>

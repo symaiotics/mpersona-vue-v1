@@ -10,7 +10,7 @@
       <h1 class="h3 font-red-hat-display mb-4">AI Trust Framework (Concept)</h1>
     </div>
 
-    <h1>Agent 1</h1>
+    <h1 class = "font-bold pt-4">Agent 1</h1>
     <p class="text-xl text-gray-600 dark:text-gray-400">Triage the Question</p>
 
     <div class="flex box border border-radius-6">
@@ -51,7 +51,7 @@
             @click="handleGo0"
             class="btn text-white bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
           >
-            Step 0 - Let's Go
+            Step 1 - Let's Go
           </button>
 
           <!-- {{ modelsResponsesArray }} -->
@@ -89,7 +89,10 @@
           <!-- Model {{ model.modelIndex + 1 }}, Response
                 {{ responseIndex + 1 }}<br/> -->
           <div v-show="agent0Prompt?.message">
-            {{ agent0Prompt.message }} <br />
+
+            <DivInput placeholder="Enter text to translate... / Saisissez le texte à traduire..."
+            v-model="agent0Prompt.message" :asPlainText="false" />
+  <br />
           </div>
           <p v-show="agent0Prompt.status !== 'waiting'" class="text-xs">
             {{ agent0Prompt.status }} <br />
@@ -114,7 +117,7 @@
       </div>
     </div>
 
-    <h1>Agent 2</h1>
+    <h1 class = "font-bold pt-4">Agent  2</h1>
     <p class="text-xl text-gray-600 dark:text-gray-400">
       Parallel Processing - Multiple Models and Multiple Instances.
     </p>
@@ -199,7 +202,7 @@
             @click="handleGo1"
             class="btn text-white bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
           >
-            Step 1 - Let's Go
+            Step 2 - Let's Go
           </button>
           <button
             @click="handleClear"
@@ -302,7 +305,11 @@
                 <!-- Model {{ model.modelIndex + 1 }}, Response
                 {{ responseIndex + 1 }}<br/> -->
                 <div v-show="response?.message">
-                  {{ response.message }} <br />
+
+                  <DivInput placeholder="Enter text to translate... / Saisissez le texte à traduire..."
+                  v-model="response.message" :asPlainText="false" />
+
+                   <br />
                 </div>
                 <p v-show="response.status !== 'waiting'" class="text-xs">
                   {{ response.status }} <br />
@@ -344,7 +351,7 @@
       </div>
     </div>
 
-    <h1>Agent 3</h1>
+    <h1 class = "font-bold pt-4">Agent 3</h1>
     <p class="text-xl text-gray-600 dark:text-gray-400">
       Identify Unique Answers / Select Majority / Flag for Human Review.
     </p>
@@ -358,7 +365,7 @@
         <div>
           <textarea
             v-model="agent2SystemPrompt"
-            disabled
+            
             placeholder="Agent 2 System Prompt"
             class="form-textarea mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
           ></textarea>
@@ -370,7 +377,7 @@
             @click="handleGo2"
             class="btn text-white bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
           >
-            Step 2 - Let's Go
+            Step 3 - Let's Go
           </button>
 
           <!-- {{ modelsResponsesArray }} -->
@@ -483,9 +490,12 @@
     </button>
 
     <div class="flex box border border-radius-6">
-      Agent 1 Correct: {{ (agent1Correct * 100).toFixed(2) }}<br />
-      Agent 2 Correct: {{ (agent2Correct * 100).toFixed(2) }}
-      <table class="table striped full-width w-full">
+      <div class = "w-96 p-2">
+
+      Agent 1 Correct: {{ (agent1Correct * 100).toFixed(2) }}%<br />
+      Agent 2 Correct: {{ (agent2Correct * 100).toFixed(2) }}%
+    </div>
+    <table class="table striped full-width w-full">
         <thead>
           <tr>
             <th scope="col">Result</th>
@@ -532,8 +542,16 @@
         </tbody>
       </table>
     </div>
+
+    <button
+                
+                class="btn text-white bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 m-2 rounded"
+              >
+                Export Agent Framework + Trust Results
+              </button>
+
   </div>
-  {{ agent2Table }}
+  <!-- {{ agent2Table }} -->
   <!-- {{ agent2UserPrompts }} -->
   <!-- {{ modelsResponsesArray }} -->
 
@@ -545,6 +563,7 @@ import { ref, computed, watchEffect, onMounted, watch } from "vue";
 import VueMultiselect from "vue-multiselect";
 import { v4 as uuidv4 } from "uuid";
 import Socket from "@/components/Socket.vue";
+import DivInput from '@/components/DivInput.vue'
 
 import { extractData } from "@/utils/extractJsonAndCode.js";
 
@@ -624,12 +643,20 @@ const agent1Correct = ref(0);
 const agent2Complete = ref(false);
 const agent2Table = ref([]);
 const agent2Correct = ref(0);
-const agent2SystemPrompt = computed(() => {
-  return `{
+
+const agent2SystemPrompt = ref(`Present the output as JSON {
   uniqueAnswers:[] an array of unique answers,
   majorityAnswer: as a string or Object,
-  flagForHumanReview: true if there is more than a 20% discrepancy between the quantity of different unique answers}`;
-});
+  flagForHumanReview: true if there is more than a 20% discrepancy between the quantity of different unique answers}`);
+
+
+// const agent2SystemPrompt = computed(() => {
+//   return `Present the output as JSON {
+//   uniqueAnswers:[] an array of unique answers,
+//   majorityAnswer: as a string or Object,
+//   flagForHumanReview: true if there is more than a 20% discrepancy between the quantity of different unique answers}`;
+// });
+
 const agent2UserPrompts = ref([]);
 
 //Agent 3 - Challenge Function
@@ -891,7 +918,7 @@ watch(agent1Complete, (newValue, oldValue) => {
             role: "user",
             content: `
        This question was asked:
-        ${JSON.stringify(modelsResponsesArray.value[a].responses)}
+        ${JSON.stringify(modelsResponsesArray.value[a].responses.map((response)=>{return response.message}))}
         Provide the correct answer from the availalbe responses.
         `,
           },

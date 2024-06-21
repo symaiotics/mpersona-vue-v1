@@ -14,8 +14,6 @@ export function useStats() {
     async function getStats() {
         try {
             var response = await configuredAxios.get(env.API_URL + '/stats', );
-            accountCount.value = response.data.payload.accounts;
-            personaCount.value = response.data.payload.personas;
             nodeVersion.value = response.data.payload.version;
             console.log("Loaded Stats")
         }
