@@ -28,8 +28,32 @@
 
       </div>
 
-      <Stats />
 
+      
+      <section class="container mx-auto p-8 flex" data-aos="fade-up" data-aos-delay="100">
+      
+      <div class="max-w-3xl mx-auto text-center pb-12 md:pb-16" style = "
+  justify-content: center;
+  align-items: center;">
+          <h2 class="h2 font-red-hat-display mb-4">Learn Core Concepts</h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400">
+            Discover some key ideas about personas, assistants, agents, and trust.
+          </p>
+
+          <p class="text-l text-gray-600 dark:text-gray-400">
+            The AI Trust Series - Explore foundational concepts in establishing AI trust.
+          </p>
+          Part 1<br/>
+          <iframe width="640" height="315" src="https://www.youtube.com/embed/35tqvQy8_2U?si=KPC1zdP5myhfsRbl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          Part 2<br/>
+            <iframe width="640" height="315" src="https://www.youtube.com/embed/czP9XMmeX6s?si=QxXxvgX8R7Gks3eq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            Part 3<br/>
+            <iframe width="640" height="315" src="https://www.youtube.com/embed/tpC4w2drRTE?si=q0qu_ro41_wFMueO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        </div>
+        </section>
+
+      
       <section class="container mx-auto p-8 flex" data-aos="fade-up" data-aos-delay="100">
 
 
@@ -58,10 +82,7 @@
       </section>
 
 
-
-
-      <Personas />
-
+ 
       <!-- <stripe-pricing-table pricing-table-id="prctbl_1NyO7aEUAK7okpK9x0QySlKD"
 publishable-key="pk_live_51HfwM7EUAK7okpK9hpYgjmGqZngHYQoZ4I5cS3Pwe6rCx9NenaNGmVUtoLYhtQTuWM6aK8WxHrvI769RE6xQBd6P00eZpdWCb4">
 </stripe-pricing-table> -->
@@ -132,11 +153,10 @@ publishable-key="pk_live_51HfwM7EUAK7okpK9hpYgjmGqZngHYQoZ4I5cS3Pwe6rCx9NenaNGmV
             Currently, it also integrates services such as:
           </p>
           <ul class="text-md text-gray-600 dark:text-gray-300 leading-relaxed list-disc list-inside">
-            <li>OpenAI GPT 4 API</li>
-            <li>OpenAI Dalle-2 API</li>
-            <li>Anthropic Claude 2.1 API</li>
-            <li>Google Gmail API for Persona/Inbox integration (Alpha)</li>
-            <li>Azure Storage Account (easily replaced with File System storage)</li>
+            <li>OpenAI GPT 4/40 API</li>
+            <li>Anthropic Claude 3.5 API</li>
+            <li>Azure OpenAI API</li>
+            <li>Mistral API</li>
           </ul>
         </div>
       </section>

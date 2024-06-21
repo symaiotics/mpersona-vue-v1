@@ -14,7 +14,6 @@
           <div class="pt-32 pb-12 md:pt-40 md:pb-20">
 
 
-
             <template v-if="!selectedPersona">
               <Personas />
 
