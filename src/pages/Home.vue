@@ -93,44 +93,7 @@ publishable-key="pk_live_51HfwM7EUAK7okpK9hpYgjmGqZngHYQoZ4I5cS3Pwe6rCx9NenaNGmV
       <Cta /> -->
       <!-- <PricingTables /> -->
 
-      <section class="container mx-auto p-8 flex flex-col md:flex-row" data-aos="fade-up" data-aos-delay="100">
-        <div class="w-full md:w-1/2 p-6">
-          <img :src="comingSoon" alt="mPersona Logo" class="w-full md:w-auto md:h-auto h-64 object-cover animate-scale" />
-        </div>
-        <div class="w-full md:w-1/2 p-6 flex flex-col justify-center">
-          <h2 class="text-3xl font-extrabold mb-4"> Version 2 is Coming </h2>
-          <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
-            There is a powerful new version of mPersona arriving in early 2024. Features include:
-          </p>
-
-          <ul class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-6 list-disc list-inside">
-            <li>User account management and metrics</li>
-            <li>New simplified look and feel and dashboard</li>
-            <li>Fully multi-lingual with AI-integrated translation assist</li>
-            <li>Persona and roster management and search for big organizations</li>
-            <li>Points-based rating system to track the most successful Gen AI Personas</li>
-            <li>Bring your own key (BYOK) for multipe Gen AI services (OpenAI, Anthropic, etc.)</li>
-            <li>OpenAI GPTs Integration (publish your GPTs to the world freely)</li>
-            <li>'Golden Response' reinforced learning based on user feedback</li>
-            <li>Easy to use Knowledge Profiles (drag and drop) with file structures</li>
-            <li>Enhanced 'vector-based' reference search</li>
-            <li>Real-time interaction Audit Reports</li>
-          </ul>
-          <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2">
-            <div class="flex-1">
-              <input v-model="emailAddress" id="waitList" type="text" class="form-input w-full"
-                placeholder="Enter your email" required />
-            </div>
-
-            <button @click="joinMailingList"
-              class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow hover:shadow-md transition-all duration-300 ease-linear">
-              Join the Waitlist
-            </button>
-          </div>
-          <p class="pt-3">By joining, you confirm you wish to receive e-mail updates from Symaiotics on future versions of
-            mPersona.</p>
-        </div>
-      </section>
+     
       <section class="container mx-auto p-8 flex flex-col md:flex-row" data-aos="fade-up" data-aos-delay="100">
         <div class="w-full md:w-1/2 p-6">
           <img :src="venom" alt="Venom stack image of a snake"
